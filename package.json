@@ -6,19 +6,39 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "mocha",
+    "deploy-eth": "node ethereum/deploy.js",
+    "compile-eth": "node ethereum/compile.js",
+    "check-types": "yarn tsc --pretty --noEmit",
+    "check-all": "yarn check-types && yarn lint && yarn eslint . --max-warnings 0 && yarn prettier --check .",
+    "prepare": "husky install",
+    "prettier-apply": "prettier --write .",
+    "prettier-check": "prettier --check ."
   },
   "dependencies": {
+    "@truffle/hdwallet-provider": "^2.0.13",
+    "fs-extra": "^10.1.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^10.0.0",
     "next": "12.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "solc": "^0.8.15",
+    "web3": "^1.7.5"
   },
   "devDependencies": {
+    "@types/fs-extra": "^9.0.13",
     "@types/node": "18.6.4",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
+    "@typescript-eslint/eslint-plugin": "^5.32.0",
     "eslint": "8.21.0",
     "eslint-config-next": "12.2.4",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "prettier": "^2.7.1",
+    "prettier-plugin-solidity": "^1.0.0-beta.24",
     "typescript": "4.7.4"
   }
 }
