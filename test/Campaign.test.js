@@ -1,16 +1,9 @@
-import { readFile } from "fs/promises"
-import assert from "assert"
-import ganache from "ganache-cli"
-import Web3 from "web3"
+const assert = require("assert")
+const ganache = require("ganache-cli")
+const Web3 = require("web3")
 
-const compiledFactory = JSON.parse(
-  await readFile(
-    new URL("../ethereum/build/CampaignFactory.json", import.meta.url)
-  )
-)
-const compiledCampaign = JSON.parse(
-  await readFile(new URL("../ethereum/build/Campaign.json", import.meta.url))
-)
+const compiledFactory = require("../ethereum/build/CampaignFactory.json")
+const compiledCampaign = require("../ethereum/build/Campaign.json")
 
 const web3 = new Web3(ganache.provider())
 

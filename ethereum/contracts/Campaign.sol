@@ -159,4 +159,28 @@ contract Campaign {
     request.state = State.Done;
     request.complete = true;
   }
+
+  function getSummary()
+    public
+    view
+    returns (
+      uint256,
+      uint256,
+      uint256,
+      uint256,
+      address
+    )
+  {
+    return (
+      minimumContribution,
+      address(this).balance,
+      requests.length,
+      contributorCount,
+      owner
+    );
+  }
+
+  function getRequestsCount() public view returns (uint256) {
+    return requests.length;
+  }
 }
