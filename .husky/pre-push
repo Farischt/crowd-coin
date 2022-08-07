@@ -1,4 +1,18 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-CMD
+yarn test || 
+(
+    echo 'Test Failed !'; 
+    false;
+)
+
+# Checks Next.js build
+yarn build ||
+(
+    echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌'
+    false;
+)
+
+# If everything passes... Now we can commit
+echo '✅✅✅✅ You win this time... I am pushing this now. ✅✅✅✅'

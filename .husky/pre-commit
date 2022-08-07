@@ -31,18 +31,5 @@ yarn check-types ||
     false;
 )
 
-yarn test || 
-(
-    echo 'Test Failed !'; 
-    false;
-)
-
-# Checks Next.js build
-yarn build ||
-(
-    echo '❌👷🔨❌ Better call Bob... Because your build failed ❌👷🔨❌'
-    false;
-)
-
 # If everything passes... Now we can commit
 echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
