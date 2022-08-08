@@ -2,6 +2,7 @@ import type { GetServerSideProps, NextPage } from "next"
 import Head from "next/head"
 
 import styles from "../styles/Home.module.css"
+import campaign from "../ethereum/campaign"
 import factory from "../ethereum/factory"
 
 type Props = {
@@ -25,10 +26,22 @@ export default Home
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const campaigns = await factory.methods.getDeployedCampaigns().call()
+  const array = []
+
+  await Promise.all(
+    campaigns.map(async (c: any) => {
+      const contract = campaign(c)
+      const detailledCampaign = await contract.methods.getSummary().call()
+      array.push(detailledCampaign)
+    })
+  )
 
   return {
     props: {
       campaigns,
+      // array: array && array.map((el) => ({
+
+      // })),
     },
   }
 }
